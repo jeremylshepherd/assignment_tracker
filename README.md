@@ -6,9 +6,9 @@ Our team has decided to create a assignemt/task management application. Users ca
 
 ## Story Board
 
-![Mock_One](./assets/Assignment Tracker Mock 01.drawio.png)
+![Mock_One](https://github.com/jeremylshepherd/assignment_tracker/blob/master/assets/Assignment%20Tracker%20Mock%2001.drawio.png?raw=true)
 
-![Mock_Two](./assets/Assignment Tracker Mock 02.drawio.png)
+![Mock_Two](https://github.com/jeremylshepherd/assignment_tracker/blob/master/assets/Assignment%20Tracker%20Mock%2002.drawio.png?raw=true)
 
 ## Functional Requirements
 
@@ -74,7 +74,7 @@ User is created and logged in. Assignments are created.
 
 ## Class Diagram
 
-![image](./assets/Assignment Tracker Class Diagram.drawio.png)
+![image](https://github.com/jeremylshepherd/assignment_tracker/blob/master/assets/Assignment%20Tracker%20Class%20Diagram.drawio.png?raw=true)
 
 ## Class Diagram Description
 
@@ -92,4 +92,4 @@ User is created and logged in. Assignments are created.
 ## Teams Link
 
 4pm every Sunday(TBD)
-[Team Link](TBD)
+[Team Link](TBD) (Unable to create a Team/Group in Teams currently)
