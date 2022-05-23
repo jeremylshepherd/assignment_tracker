@@ -88,9 +88,9 @@ User is created and logged in. Assignments are created.
 [Scrum Board](https://github.com/users/jeremylshepherd/projects/1/views/1?layout=board)
 _Still sorting out roles_
 
-- UI specialist: Robert Champion, Jeremy Shepherd, Yoshua Meatchem
+- UI specialist: Robert Champion, Jeremy Shepherd
 - Product Owner: Jeremy Shepherd
-- Integration Specialist: Robert Champion, Jeremy Shepherd, Yoshua Meatchem
+- Integration Specialist: Robert Champion, Jeremy Shepherd
 
 ## Teams Link
 
