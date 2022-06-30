@@ -1,4 +1,4 @@
-package com.uc_it4045.assignment_tracker;
+package com.uc_it4045.assignment_tracker.UserController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
