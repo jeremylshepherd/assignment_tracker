@@ -1,6 +1,6 @@
 package com.uc_it4045.assignment_tracker;
 
-import org.springframework.boot.SpringApplication;
+//deleted unused import 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import static org.springframework.boot.SpringApplication.*;
