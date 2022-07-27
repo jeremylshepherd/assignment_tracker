@@ -11,4 +11,31 @@ public class Assignment {
     double Points;
     String User;
     String Date;
+
+
+    public void setId (int Id){
+        this.Id=Id;
+    }
+
+    public void setTitle(String Title){
+        this.Title=Title;
+    }
+
+    public void setDescription(String Description){
+        this.Description=Description;
+    }
+
+    public void setPoints (double Points){
+        this.Points=Points;
+    }
+
+    public void setUser (String User){
+        this.User=User;
+    }
+
+    public void setDate (String Date){
+        this.Date=Date;
+    }
+
+
 }
