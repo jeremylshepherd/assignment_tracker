@@ -12,7 +12,7 @@ class AssignmentTrackerApplicationTests {
 	private AssignmentTrackerController controller;
 
 	@Test
-	public void contextLoads() throws Exception {
+	public void contextLoads() {
 		assertThat(controller).isNotNull();
 	}
 
