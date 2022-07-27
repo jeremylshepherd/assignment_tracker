@@ -38,4 +38,35 @@ public class Assignment {
     }
 
 
+
+
+
+
+
+    public int getId (){
+        return Id;
+    }
+
+    public String getTitle(){
+        return Title;
+    }
+
+    public String getDescription(){
+        return Description;
+    }
+
+    public double getPoints (){
+        return Points;
+    }
+
+    public String getUser (){
+        return User;
+    }
+
+    public String getDate (){
+        return Date;
+    }
+
+
+
 }
