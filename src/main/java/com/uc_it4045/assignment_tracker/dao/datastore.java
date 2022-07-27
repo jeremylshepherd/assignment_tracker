@@ -1,7 +1,7 @@
 package com.uc_it4045.assignment_tracker.dao;
 
-
-class UserDao{
+// Once you get your DAO figured out you need to have @Repository annotation..
+/*Need a access modifier at the like: public */class UserDao{
     private String firstName;
     private String lastName;
     UserDao(){
@@ -12,8 +12,11 @@ class UserDao{
     }
 
 }
-class datastore{
-public static void main(String[] args){
 
-}
-}
+// There should only be one "main" and that is the project start up in your AssignmentTrackerApplication
+// You also have UserDao nested in the datastore.java??
+//class datastore{
+//public static void main(String[] args){
+//
+//}
+//}

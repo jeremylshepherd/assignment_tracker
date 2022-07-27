@@ -8,8 +8,11 @@ public class AssignmentTrackerController {
          * Handle the / endpoint
          * @return Start page template
          */
+
+        // This doesn't work...
         @RequestMapping("/")
         public String index() {
             return "start";
         }
     }
+//There are no other end points within your project?
