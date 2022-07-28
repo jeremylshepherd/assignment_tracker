@@ -2,7 +2,6 @@ package com.uc_it4045.assignment_tracker.service;
 
 import com.uc_it4045.assignment_tracker.dto.Assignment;
 
-import java.io.IOException;
 import java.util.List;
 
 public interface IAssignmentService {
@@ -10,11 +9,7 @@ public interface IAssignmentService {
 
     void delete(int id) throws Exception;
 
-    Assignment save(Assignment specimen) throws Exception;
+    Assignment save(Assignment assignment) throws Exception;
 
     List<Assignment> fetchAll();
-
-    List<Assignment> fetchAssignments(String combinedName) throws IOException;
-
-    List<Assignment> fetchAssignmentsByAssignmentId(int assignmentId);
 }
