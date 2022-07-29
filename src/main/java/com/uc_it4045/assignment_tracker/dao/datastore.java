@@ -2,8 +2,8 @@ package com.uc_it4045.assignment_tracker.dao;
 
 
 class UserDao{
-    private String firstName;
-    private String lastName;
+    public String firstName;
+    public String lastName;
     UserDao(){
         com.uc_it4045.assignment_tracker.dto.User firstName = new com.uc_it4045.assignment_tracker.dto.User();
         com.uc_it4045.assignment_tracker.dto.User lastName = new com.uc_it4045.assignment_tracker.dto.User();
