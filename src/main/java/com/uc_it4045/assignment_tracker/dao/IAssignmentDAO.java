@@ -14,7 +14,5 @@ public interface IAssignmentDAO {
 
     void delete(int id);
 
-    List<Assignment> fetchAssignmentsByAssignmentId(int assignmentId);
-
     List<Assignment> fetchAssignment() throws IOException;
 }

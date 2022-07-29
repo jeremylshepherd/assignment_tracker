@@ -30,7 +30,7 @@ public class AssignmentTrackerController {
          */
         @RequestMapping("/")
         public String index() {
-            return "start";
+            return "index";
         }
 
         @GetMapping("/api/assignments")

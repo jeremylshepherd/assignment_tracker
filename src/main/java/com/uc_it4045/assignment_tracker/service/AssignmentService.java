@@ -5,9 +5,10 @@ import com.uc_it4045.assignment_tracker.dto.Assignment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class AssignmentService implements IAssignmentService {
 
     @Autowired

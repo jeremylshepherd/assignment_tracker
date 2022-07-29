@@ -42,11 +42,6 @@ public class AssignmentSQLDAO implements IAssignmentDAO {
     }
 
     @Override
-    public List<Assignment> fetchAssignmentsByAssignmentId(int assignmentId) {
-        return AssignmentRepository.findByAssignmentId(assignmentId);
-    }
-
-    @Override
     public List<Assignment> fetchAssignment() throws IOException {
         return null;
     }
