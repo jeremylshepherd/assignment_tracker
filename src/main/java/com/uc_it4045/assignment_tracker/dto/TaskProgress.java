@@ -1,7 +1,7 @@
 package com.uc_it4045.assignment_tracker.dto;
 
 public class TaskProgress {
-    String task;
+    private String task;
     String toDo;
     String inProgress;
     String complete;
