@@ -9,7 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 class AssignmentTrackerApplicationTests {
 
 	@Autowired
-	private AssignmentTrackerController controller;
+	public AssignmentTrackerController controller;
 
 	@Test
 	public void contextLoads() throws Exception {
