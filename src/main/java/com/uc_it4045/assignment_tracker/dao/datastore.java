@@ -10,10 +10,4 @@ class UserDao{
         this.firstName = firstName.getFirstName();
         this.lastName = lastName.getLastName();
     }
-
-}
-class datastore{
-public static void main(String[] args){
-
-}
 }
