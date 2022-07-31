@@ -36,3 +36,28 @@
     transform: rotate(360deg);
   }
 }
+
+.form-btn-group {
+  position: fixed;
+  top: calc(100vh - 80px);
+  right: 1em;
+  bottom: 2em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+}
+
+.form-btn-group .btn {
+  margin-right: 0.5em;
+}
+
+.btn-circle {
+  width: 50px;
+  aspect-ratio: 1 / 1;
+  padding: 7px 10px;
+  border-radius: 25px;
+  font-size: 18px;
+  text-align: center;
+}
