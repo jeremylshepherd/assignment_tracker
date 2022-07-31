@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Assignment from "./Assignment";
 
 function AssignmentList(props) {
-  const { assignments, updateAssignment } = props;
+  const { assignments, updateAssignment, deleteAssignment } = props;
   const [pendingList, setPendingList] = useState([]);
   const [inProgressList, setInProgressList] = useState([]);
   const [completeList, setCompleteList] = useState([]);
@@ -10,12 +10,12 @@ function AssignmentList(props) {
   const parseAssignmentList = (assignmentList) => {
     let obj = {
       pending: [],
-      inProgress: [],
+      inprogress: [],
       complete: [],
     };
     assignmentList?.forEach((a) => obj[a.status.toLowerCase()].push(a));
     setPendingList(obj.pending);
-    setInProgressList(obj.inProgress);
+    setInProgressList(obj.inprogress);
     setCompleteList(obj.complete);
   };
   useEffect(() => {
@@ -24,7 +24,12 @@ function AssignmentList(props) {
 
   const renderStatusList = (list) =>
     list.map((a) => (
-      <Assignment key={a.id} {...a} updateAssignment={updateAssignment} />
+      <Assignment
+        key={a.id}
+        {...a}
+        updateAssignment={updateAssignment}
+        deleteAssignment={deleteAssignment}
+      />
     ));
 
   return (

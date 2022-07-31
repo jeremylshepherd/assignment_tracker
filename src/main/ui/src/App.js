@@ -38,7 +38,7 @@ function App() {
   const [newAssignment, setNewAssignment] = useState(false);
 
   async function updateAssignment(assignment) {
-    const idx = assignmentList.findIndex((t) => t.id === assignment.id);
+    const idx = assignmentList.findIndex((a) => a.id === assignment.id);
     const assignmentsCopy = [...assignmentList];
     assignmentsCopy.splice(idx, 1);
     updateItemList(
@@ -48,6 +48,17 @@ function App() {
       assignment
     );
   }
+
+  async function deleteAssignment(assignment) {
+    const idx = assignmentList.findIndex((a) => a.id === assignment.id);
+    const response = await fetch(`${assignmentsAPI}/${idx}`, {
+      method: "DELETE",
+    });
+    if (response.status === 200) {
+      getItems(assignmentsAPI, setAssignmentList);
+    }
+  }
+
   useEffect(() => {
     getItems(assignmentsAPI, setAssignmentList);
   }, []);
@@ -64,25 +75,27 @@ function App() {
           <Route path="/">
             <AssignmentList
               assignments={assignmentList}
-              updateTask={updateAssignment}
+              updateAssignment={updateAssignment}
+              deleteAssignment={deleteAssignment}
             />
           </Route>
         </Switch>
         {newAssignment && (
           <AssignmentForm
-            tasks={assignmentList}
+            assignments={assignmentList}
             closeForm={closeAssignment}
-            setTaskList={setAssignmentList}
+            setAssignmentList={setAssignmentList}
             api={assignmentsAPI}
-            update={updateItemList}
+            updateList={updateItemList}
+            updateAssignment={updateAssignment}
           />
         )}
         <div className="form-btn-group">
           <button
-            className="btn btn-info"
+            className="btn btn-info btn-circle"
             onClick={() => setNewAssignment(true)}
           >
-            <i className="fas fa-tasks" />
+            <i className="fas fa-plus" />
           </button>
         </div>
       </div>

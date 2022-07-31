@@ -33,12 +33,12 @@ function Nav() {
                 Home
               </Link>
             </li>
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <Link className="nav-link" to="/auth">
                 Logout
               </Link>{" "}
-              {/*TODO: Implement with Auth Implmentation*/}
-            </li>
+              // TODO: Implement with Auth Implmentation
+            </li> */}
           </ul>
         </div>
       </div>

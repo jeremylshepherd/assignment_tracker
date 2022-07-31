@@ -1,95 +1,100 @@
 import React, { useState } from "react";
-import { Status } from "../../utils/constants";
 import "./_component.assignment.scss";
+import AssignmentForm from "./AssignmentForm";
+import AssignmentDeleteConfirm from "./AssignmentDeleteConfirm";
 
 function Assignment(props) {
-  const { id, title, status, updateAssignment } = props;
-  const [currentStatus, setCurrentStatus] = useState(status);
+  const {
+    id,
+    title,
+    description,
+    status,
+    date,
+    updateAssignment,
+    deleteAssignment,
+  } = props;
   const [showUpdate, setShowUpdate] = useState(false);
+  const [showDelete, setShowDelete] = useState(false);
   const statusIcon = {
     pending: "redo",
-    inProgress: "spinner",
+    inprogress: "spinner",
     complete: "check-circle",
   };
   const getIcon = (obj, status) => obj[status];
-  const dateString = new Date(id).toLocaleDateString("en-us", {
+  const dateString = new Date(date).toLocaleDateString("en-us", {
     month: "long",
     year: "numeric",
     day: "2-digit",
   });
-  const renderStatusUpdate = () => (
-    <div className="assignment-alert">
-      <div className="alert alert-info">
-        <form className="form-group form-check">
-          <strong>Update Assignment Status!</strong>
-          <div className="cb-group">
-            {Object.keys(Status).map((key) => (
-              <div className="cb-row text-left">
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  name={key}
-                  value={key}
-                  id={key}
-                  onClick={handleStatusUpdate}
-                />
-                <label htmlFor={key} className="form-check-label">
-                  {key}
-                </label>
-              </div>
-            ))}
-          </div>
-          <div className="button-group">
-            <button
-              className="btn btn-danger"
-              onClick={(e) => {
-                e.preventDefault();
-                setShowUpdate(false);
-              }}
-            >
-              Close
-            </button>
-            <button
-              className="btn btn-primary"
-              onClick={(e) => {
-                e.preventDefault();
-                updateAssignmentStatus();
-              }}
-            >
-              Update
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-  );
 
-  const handleStatusUpdate = (e) => {
-    let value = e.target.value;
-    let stat;
-    if (value === "INPROGRESS") {
-      stat = Status.INPROGRESS;
-    } else if (value === "COMPLETE") {
-      stat = Status.COMPLETE;
-    } else {
-      stat = Status.PENDING;
-    }
-    setCurrentStatus(stat);
+  const closeForm = () => setShowUpdate(false);
+  const closeDialog = () => setShowDelete(false);
+
+  const handleDelete = (id) => {
+    deleteAssignment(id);
+    closeDialog();
   };
 
-  const updateAssignmentStatus = () => {
-    let updatedAssignment = {
-      id,
-      title,
-      status: currentStatus,
-    };
-    updateAssignment(updatedAssignment);
-    setShowUpdate(false);
+  const renderDescription = () => {
+    let descriptionArray = description?.split("\n");
+    return (
+      <ul>
+        {descriptionArray?.map((com, i) => (
+          <li key={i} className="text-left">
+            {com}
+          </li>
+        ))}
+      </ul>
+    );
+  };
+
+  const renderDeleteButton = () => {
+    return (
+      <i
+        className="far fa-trash-alt"
+        onClick={() => {
+          console.log("delete button hit");
+          setShowDelete(true);
+        }}
+      />
+    );
+  };
+
+  const renderUpdateButton = () => (
+    <i className="fas fa-edit" onClick={(e) => setShowUpdate(true)} />
+  );
+
+  const renderUpdateForm = () => {
+    const assignment = { title, description, status, date };
+    return (
+      <AssignmentForm
+        assignmentToUpdate={assignment}
+        updateAssignment={updateAssignment}
+        closeForm={closeForm}
+      />
+    );
+  };
+
+  const renderDeleteDialog = () => {
+    return (
+      <AssignmentDeleteConfirm
+        id={id}
+        handleDelete={handleDelete}
+        close={closeDialog}
+      />
+    );
   };
 
   return (
     <div className={`assignment assignment-${status.toLowerCase()}`}>
-      <h2 className="assignment-heading">{title}</h2>
+      <div className="assignment-header">
+        {renderDeleteButton()}
+        <h3 className="assignment-heading">{title}</h3>
+        {renderUpdateButton()}
+      </div>
+      {description && (
+        <div className="assignment-body">{renderDescription()}</div>
+      )}
       <div className="assignment-footer">
         <div className="assignment-footer-date">{dateString}</div>
         <div className="assignment-footer-status">
@@ -104,7 +109,8 @@ function Assignment(props) {
           />
         </div>
       </div>
-      {showUpdate && renderStatusUpdate()}
+      {showUpdate && renderUpdateForm()}
+      {showDelete && renderDeleteDialog()}
     </div>
   );
 }
