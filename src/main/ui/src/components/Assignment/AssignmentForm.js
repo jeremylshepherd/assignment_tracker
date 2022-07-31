@@ -2,15 +2,8 @@ import React, { useState } from "react";
 import { Status } from "../../utils/constants";
 
 function AssignmentForm(props) {
-  const {
-    api,
-    assignments,
-    setAssignmentList,
-    closeForm,
-    updateList,
-    updateAssignment,
-    assignmentToUpdate,
-  } = props;
+  const { closeForm, updateAssignment, createAssignment, assignmentToUpdate } =
+    props;
   const [title, setTitle] = useState(assignmentToUpdate?.title ?? "");
   const [description, setDescription] = useState(
     assignmentToUpdate?.description ?? ""
@@ -26,7 +19,13 @@ function AssignmentForm(props) {
 
   const submitAssignment = () => {
     if (assignmentToUpdate && updateAssignment) {
-      let updatedAssignment = { title, description, status, date: dateTime };
+      let updatedAssignment = {
+        id: assignmentToUpdate.id,
+        title,
+        description,
+        status,
+        date: dateTime,
+      };
       updateAssignment(updatedAssignment);
     } else {
       const newAssignment = {
@@ -35,7 +34,7 @@ function AssignmentForm(props) {
         status,
         date: dateTime,
       };
-      updateList(api, assignments, setAssignmentList, newAssignment);
+      createAssignment(newAssignment);
     }
     resetForm();
     closeForm();

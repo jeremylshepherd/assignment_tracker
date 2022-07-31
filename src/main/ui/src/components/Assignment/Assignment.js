@@ -65,7 +65,7 @@ function Assignment(props) {
   );
 
   const renderUpdateForm = () => {
-    const assignment = { title, description, status, date };
+    const assignment = { id, title, description, status, date };
     return (
       <AssignmentForm
         assignmentToUpdate={assignment}
@@ -88,9 +88,9 @@ function Assignment(props) {
   return (
     <div className={`assignment assignment-${status.toLowerCase()}`}>
       <div className="assignment-header">
-        {renderDeleteButton()}
+        {id && renderDeleteButton()}
         <h3 className="assignment-heading">{title}</h3>
-        {renderUpdateButton()}
+        {id && renderUpdateButton()}
       </div>
       {description && (
         <div className="assignment-body">{renderDescription()}</div>
@@ -109,8 +109,8 @@ function Assignment(props) {
           />
         </div>
       </div>
-      {showUpdate && renderUpdateForm()}
-      {showDelete && renderDeleteDialog()}
+      {id && showUpdate && renderUpdateForm()}
+      {id && showDelete && renderDeleteDialog()}
     </div>
   );
 }

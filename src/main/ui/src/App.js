@@ -7,60 +7,43 @@ import "./App.css";
 import AssignmentList from "./components/Assignment/AssignmentList";
 import AssignmentForm from "./components/Assignment/AssignmentForm";
 import Nav from "./components/nav/Nav";
-
-const SERVER_PATH = "http://localhost:8080";
-const assignmentsAPI = `${SERVER_PATH}/api/assignments`;
-
-async function getItems(api, setItems) {
-  const response = await fetch(api);
-  const json = await response.json();
-  setItems(json);
-}
-
-async function updateItemList(api, listToUpdate, setter, item) {
-  const updatedList = [...listToUpdate, item];
-  let data = JSON.stringify(updatedList, null, 4);
-  const response = await fetch(api, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: data,
-  });
-  const status = response.status;
-  if (status === 200) {
-    getItems(api, setter);
-  }
-}
+import {
+  getAssignments,
+  postNewAssignmentAPI,
+  putUpdateAssignmentAPI,
+  deleteAssignmentAPI,
+} from "./components/Assignment/assignments.api";
 
 function App() {
   const [assignmentList, setAssignmentList] = useState([]);
   const [newAssignment, setNewAssignment] = useState(false);
 
-  async function updateAssignment(assignment) {
-    const idx = assignmentList.findIndex((a) => a.id === assignment.id);
-    const assignmentsCopy = [...assignmentList];
-    assignmentsCopy.splice(idx, 1);
-    updateItemList(
-      assignmentsAPI,
-      assignmentsCopy,
-      setAssignmentList,
-      assignment
-    );
+  async function createAssignment(assignment) {
+    assignment.status = assignment.status.toUpperCase();
+    const response = await postNewAssignmentAPI(assignment);
+    if (response.status === 200) {
+      getAssignments(setAssignmentList);
+    }
   }
 
-  async function deleteAssignment(assignment) {
-    const idx = assignmentList.findIndex((a) => a.id === assignment.id);
-    const response = await fetch(`${assignmentsAPI}/${idx}`, {
-      method: "DELETE",
-    });
+  async function updateAssignment(assignment) {
+    assignment.status = assignment.status.toUpperCase();
+    const response = await putUpdateAssignmentAPI(assignment);
     if (response.status === 200) {
-      getItems(assignmentsAPI, setAssignmentList);
+      getAssignments(setAssignmentList);
+    }
+  }
+
+  async function deleteAssignment(id) {
+    console.log("deleteAssignment: ", id);
+    const response = await deleteAssignmentAPI(id);
+    if (response.status === 200) {
+      getAssignments(setAssignmentList);
     }
   }
 
   useEffect(() => {
-    getItems(assignmentsAPI, setAssignmentList);
+    getAssignments(setAssignmentList);
   }, []);
 
   const closeAssignment = () => setNewAssignment(false);
@@ -82,12 +65,9 @@ function App() {
         </Switch>
         {newAssignment && (
           <AssignmentForm
-            assignments={assignmentList}
             closeForm={closeAssignment}
-            setAssignmentList={setAssignmentList}
-            api={assignmentsAPI}
-            updateList={updateItemList}
             updateAssignment={updateAssignment}
+            createAssignment={createAssignment}
           />
         )}
         <div className="form-btn-group">

@@ -39,9 +39,9 @@ public class AssignmentController {
             asgn01.setTitle("Sample 01");
             asgn02.setTitle("Sample 02");
             asgn03.setTitle("Sample 03");
-            asgn01.setDescription("Example assignment to demonstrate the UI");
-            asgn02.setDescription("Once you click the + button and add an assignment");
-            asgn03.setDescription("These will disappear.");
+            asgn01.setDescription("These are example assignments\nto demonstrate the UI");
+            asgn02.setDescription("The controls on these are currently disabled\nBut! once you click the + button and create an assignment");
+            asgn03.setDescription("These will disappear\nThen you can interact with your newly created assignment(s).");
             asgn01.setStatus(Status.PENDING);
             asgn02.setStatus(Status.INPROGRESS);
             asgn03.setStatus(Status.COMPLETE);
@@ -81,14 +81,15 @@ public class AssignmentController {
         }
     }
 
-    @PostMapping(value="/api/assignments/{id}", consumes="application/json", produces="application/json")
-    public ResponseEntity updateAssignment(@PathVariable("id") int id, @RequestBody Assignment assignment) {
-        Assignment foundAssignment = assignmentService.fetchById(id);
+    @PutMapping(value="/api/assignments", consumes="application/json", produces="application/json")
+    public ResponseEntity updateAssignment(@RequestBody Assignment assignment) {
+        Assignment foundAssignment = assignmentService.fetchById(assignment.getId());
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         try {
+            foundAssignment = assignment;
             Assignment updatedAssignment = assignmentService.save(foundAssignment);
-            logger.info("Route: POST:/api/assignments returns " + updatedAssignment.toString());
+            logger.info("Route: PUT:/api/assignments returns " + updatedAssignment.toString());
             return new ResponseEntity<Assignment>(updatedAssignment, headers, HttpStatus.OK);
         } catch (Exception e) {
             logger.error("Unable to update assignment: " + e.getMessage(), e);

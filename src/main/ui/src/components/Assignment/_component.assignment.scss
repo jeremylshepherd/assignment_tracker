@@ -99,6 +99,7 @@ $GH-font: "Gloria Hallelujah", cursive;
     align-items: center;
     justify-content: center;
     background: #303030;
+    font-family: $GH-font;
 
     &-container {
       position: absolute;
