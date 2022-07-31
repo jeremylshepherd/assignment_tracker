@@ -2,8 +2,8 @@ package com.uc_it4045.assignment_tracker;
 
 public enum Status {
     PENDING("pending"),
-    INPROGRESS("inProgress"),
-    COMPLETED("completed");
+    INPROGRESS("inprogress"),
+    COMPLETE("complete");
 
     public final String label;
 

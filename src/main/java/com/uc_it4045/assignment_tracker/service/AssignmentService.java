@@ -19,7 +19,7 @@ public class AssignmentService implements IAssignmentService {
     }
 
     @Override
-    @Cacheable
+    @Cacheable(value = "assignment", key="#id")
     public Assignment fetchById(int id) {
         return assignmentDAO.fetch(id);
     }
