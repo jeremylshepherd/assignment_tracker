@@ -1,5 +1,5 @@
-// const API = "http://rhinestone-earthy-cathedral.glitch.me/api/assignments"; // Quick interaction server to mimic our Spring version of API
-const API = "http://localhost:8080/api/assignments";
+const API = "http://rhinestone-earthy-cathedral.glitch.me/api/assignments"; // Quick interaction server to mimic our Spring version of API
+// const API = "http://localhost:8080/api/assignments";
 
 export async function getAssignments(setAssignments) {
   const response = await fetch(API);

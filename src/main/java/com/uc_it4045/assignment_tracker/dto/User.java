@@ -1,36 +1,21 @@
 package com.uc_it4045.assignment_tracker.dto;
 
+import lombok.Data;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.List;
 
-public class User {
+
+@Entity
+public @Data
+class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private String email;
     private String firstName;
     private String lastName;
-
-    public List<Assignment> getAssignments() {
-        return assignments;
-    }
-
-    public void setAssignments(List<Assignment> assignments) {
-        this.assignments = assignments;
-    }
-
-    private List<Assignment> assignments;
-
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
 }

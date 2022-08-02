@@ -13,10 +13,13 @@ import {
   putUpdateAssignmentAPI,
   deleteAssignmentAPI,
 } from "./components/Assignment/assignments.api";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import Login from "./components/Login/Login";
 
 function App() {
   const [assignmentList, setAssignmentList] = useState([]);
   const [newAssignment, setNewAssignment] = useState(false);
+  // const [user, setUser] = useState(getAuth());
 
   async function createAssignment(assignment) {
     assignment.status = assignment.status.toUpperCase();
@@ -55,29 +58,34 @@ function App() {
         <h1 className="text-center App__title">Asignment Tracker</h1>
         <h3 className="text-center">Assignments</h3>
         <Switch>
-          <Route path="/">
-            <AssignmentList
-              assignments={assignmentList}
-              updateAssignment={updateAssignment}
-              deleteAssignment={deleteAssignment}
-            />
+          <Route path="/login">
+            <Login />
           </Route>
+          <ProtectedRoute path="/">
+            <>
+              <AssignmentList
+                assignments={assignmentList}
+                updateAssignment={updateAssignment}
+                deleteAssignment={deleteAssignment}
+              />
+              {newAssignment && (
+                <AssignmentForm
+                  closeForm={closeAssignment}
+                  updateAssignment={updateAssignment}
+                  createAssignment={createAssignment}
+                />
+              )}
+              <div className="form-btn-group">
+                <button
+                  className="btn btn-info btn-circle"
+                  onClick={() => setNewAssignment(true)}
+                >
+                  <i className="fas fa-plus" />
+                </button>
+              </div>
+            </>
+          </ProtectedRoute>
         </Switch>
-        {newAssignment && (
-          <AssignmentForm
-            closeForm={closeAssignment}
-            updateAssignment={updateAssignment}
-            createAssignment={createAssignment}
-          />
-        )}
-        <div className="form-btn-group">
-          <button
-            className="btn btn-info btn-circle"
-            onClick={() => setNewAssignment(true)}
-          >
-            <i className="fas fa-plus" />
-          </button>
-        </div>
       </div>
     </Router>
   );
