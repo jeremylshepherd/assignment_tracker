@@ -3,6 +3,7 @@ package com.uc_it4045.assignment_tracker.controllers;
 import com.uc_it4045.assignment_tracker.config.JwtTokenUtil;
 import com.uc_it4045.assignment_tracker.dto.JwtRequest;
 import com.uc_it4045.assignment_tracker.dto.JwtResponse;
+import com.uc_it4045.assignment_tracker.dto.UserDTO;
 import com.uc_it4045.assignment_tracker.service.JwtUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +32,11 @@ public class JwtAuthenticationController {
         final UserDetails userDetails = jwtUserDetailsService.loadUserByUsername(authenticationRequest.getUsername());
         final String token = jwtTokenUtil.generateToken(userDetails);
         return ResponseEntity.ok(new JwtResponse(token));
+    }
+
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public ResponseEntity<?> saveUser(@RequestBody UserDTO userDTO) throws Exception {
+        return ResponseEntity.ok(jwtUserDetailsService.save(userDTO));
     }
 
     private void authenticate(String username, String password) throws Exception {
