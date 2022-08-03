@@ -15,11 +15,14 @@ class Assignment {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    private Integer id;
+    private int id;
     private String title;
     private String description;
     private Status status;
     @JsonFormat(shape=JsonFormat.Shape.STRING)
     private LocalDateTime date;
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private AuthUser user;
 }
 

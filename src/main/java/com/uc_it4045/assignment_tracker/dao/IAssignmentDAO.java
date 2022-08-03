@@ -14,5 +14,5 @@ public interface IAssignmentDAO {
 
     void delete(int id);
 
-    List<Assignment> fetchAssignment() throws IOException;
+    List<Assignment> fetchUserAssignments(int userId) throws IOException;
 }

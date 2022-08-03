@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../nav/_component.nav.scss";
 
-function Nav() {
+function Nav({ user }) {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid">
@@ -33,14 +33,16 @@ function Nav() {
                 Home
               </Link>
             </li>
-            {/* <li className="nav-item">
-              <Link className="nav-link" to="/auth">
-                Logout
-              </Link>{" "}
-              // TODO: Implement with Auth Implmentation
-            </li> */}
+            {user && (
+              <li className="nav-item">
+                <Link className="nav-link" to="/signout">
+                  Logout
+                </Link>
+              </li>
+            )}
           </ul>
         </div>
+        {user && <span>{`Hello, ${user.firstName}`}</span>}
       </div>
     </nav>
   );

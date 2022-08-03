@@ -4,22 +4,21 @@ import "../node_modules/@fortawesome/fontawesome-free/css/all.min.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/bootswatch/dist/darkly/bootstrap.min.css";
 import "./App.css";
-import AssignmentList from "./components/Assignment/AssignmentList";
-import AssignmentForm from "./components/Assignment/AssignmentForm";
 import Nav from "./components/nav/Nav";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import Login from "./components/Login/Login";
+import AssignmentsPage from "./components/Assignment/AssignmentsPage";
 import {
   getAssignments,
   postNewAssignmentAPI,
   putUpdateAssignmentAPI,
   deleteAssignmentAPI,
 } from "./components/Assignment/assignments.api";
-import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
-import Login from "./components/Login/Login";
 
 function App() {
   const [assignmentList, setAssignmentList] = useState([]);
   const [newAssignment, setNewAssignment] = useState(false);
-  // const [user, setUser] = useState(getAuth());
+  const [user, setUser] = useState(null);
 
   async function createAssignment(assignment) {
     assignment.status = assignment.status.toUpperCase();
@@ -54,36 +53,23 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Nav />
+        <Nav user={user} />
         <h1 className="text-center App__title">Asignment Tracker</h1>
         <h3 className="text-center">Assignments</h3>
         <Switch>
           <Route path="/login">
-            <Login />
+            <Login setUser={setUser} />
           </Route>
           <ProtectedRoute path="/">
-            <>
-              <AssignmentList
-                assignments={assignmentList}
-                updateAssignment={updateAssignment}
-                deleteAssignment={deleteAssignment}
-              />
-              {newAssignment && (
-                <AssignmentForm
-                  closeForm={closeAssignment}
-                  updateAssignment={updateAssignment}
-                  createAssignment={createAssignment}
-                />
-              )}
-              <div className="form-btn-group">
-                <button
-                  className="btn btn-info btn-circle"
-                  onClick={() => setNewAssignment(true)}
-                >
-                  <i className="fas fa-plus" />
-                </button>
-              </div>
-            </>
+            <AssignmentsPage
+              assignmentList={assignmentList}
+              updateAssignment={updateAssignment}
+              deleteAssignment={deleteAssignment}
+              newAssignment={newAssignment}
+              closeAssignment={closeAssignment}
+              createAssignment={createAssignment}
+              setNewAssignment={setNewAssignment}
+            />
           </ProtectedRoute>
         </Switch>
       </div>

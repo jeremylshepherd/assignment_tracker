@@ -1,4 +1,4 @@
-package com.uc_it4045.assignment_tracker;
+package com.uc_it4045.assignment_tracker.config;
 
 import com.uc_it4045.assignment_tracker.config.JwtAuthenticationEntryPoint;
 import com.uc_it4045.assignment_tracker.config.JwtRequestFilter;
