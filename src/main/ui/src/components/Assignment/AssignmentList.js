@@ -13,7 +13,9 @@ function AssignmentList(props) {
       inprogress: [],
       complete: [],
     };
-    assignmentList?.forEach((a) => obj[a.status.toLowerCase()].push(a));
+    if (assignmentList.length > 0) {
+      assignmentList?.forEach((a) => obj[a.status.toLowerCase()]?.push(a));
+    }
     setPendingList(obj.pending);
     setInProgressList(obj.inprogress);
     setCompleteList(obj.complete);

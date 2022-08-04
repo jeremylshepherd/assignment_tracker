@@ -1,16 +1,22 @@
 import React from "react";
 import { Redirect, Route } from "react-router";
-import { authService } from "../../authentication.service";
+import useAuth from "../../auth/useAuth";
 
 function ProtectedRoute({ children, ...rest }) {
+  let auth = useAuth();
   return (
     <Route
       {...rest}
-      render={() => {
-        return authService.isAuthenticated === true ? (
+      render={({ location }) => {
+        return auth.user ? (
           children
         ) : (
-          <Redirect to="/login" />
+          <Redirect
+            to={{
+              pathname: "/login",
+              state: { from: location },
+            }}
+          />
         );
       }}
     />

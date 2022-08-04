@@ -88,9 +88,9 @@ function Assignment(props) {
   return (
     <div className={`assignment assignment-${status.toLowerCase()}`}>
       <div className="assignment-header">
-        {id && renderDeleteButton()}
+        {Boolean(id) && renderDeleteButton()}
         <h3 className="assignment-heading">{title}</h3>
-        {id && renderUpdateButton()}
+        {Boolean(id) && renderUpdateButton()}
       </div>
       {description && (
         <div className="assignment-body">{renderDescription()}</div>
@@ -109,8 +109,8 @@ function Assignment(props) {
           />
         </div>
       </div>
-      {id && showUpdate && renderUpdateForm()}
-      {id && showDelete && renderDeleteDialog()}
+      {Boolean(id) && showUpdate && renderUpdateForm()}
+      {Boolean(id) && showDelete && renderDeleteDialog()}
     </div>
   );
 }

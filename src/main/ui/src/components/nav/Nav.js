@@ -1,8 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import useAuth from "../../auth/useAuth";
 import "../nav/_component.nav.scss";
 
-function Nav({ user }) {
+function Nav() {
+  const auth = useAuth();
+  const history = useHistory();
+  const signOut = () => auth.signout(() => history.push("/"));
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid">
@@ -14,6 +19,7 @@ function Nav({ user }) {
           />
           <i className="far fa-life-ring"></i>
         </Link>
+        {auth.user && <span>{`Hello, ${auth.user.firstName}`}</span>}
         <button
           className="navbar-toggler collapsed"
           type="button"
@@ -26,23 +32,12 @@ function Nav({ user }) {
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        <div className="navbar-collapse collapse" id="navbarColor01">
-          <ul className="navbar-nav me-auto">
-            <li className="nav-item">
-              <Link className="nav-link active" to="/">
-                Home
-              </Link>
-            </li>
-            {user && (
-              <li className="nav-item">
-                <Link className="nav-link" to="/signout">
-                  Logout
-                </Link>
-              </li>
-            )}
-          </ul>
-        </div>
-        {user && <span>{`Hello, ${user.firstName}`}</span>}
+        <div className="navbar-collapse collapse" id="navbarColor01"></div>
+        {auth.user && (
+          <a className="nav-link signout-link" onClick={signOut}>
+            Logout
+          </a>
+        )}
       </div>
     </nav>
   );

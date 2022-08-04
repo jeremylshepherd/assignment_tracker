@@ -14,11 +14,13 @@ import {
   putUpdateAssignmentAPI,
   deleteAssignmentAPI,
 } from "./components/Assignment/assignments.api";
+import useAuth from "./auth/useAuth";
 
 function App() {
   const [assignmentList, setAssignmentList] = useState([]);
   const [newAssignment, setNewAssignment] = useState(false);
-  const [user, setUser] = useState(null);
+  const auth = useAuth();
+  const [user, setUser] = useState(auth?.user);
 
   async function createAssignment(assignment) {
     assignment.status = assignment.status.toUpperCase();
@@ -46,7 +48,7 @@ function App() {
 
   useEffect(() => {
     getAssignments(setAssignmentList);
-  }, []);
+  }, [auth?.user?.username]);
 
   const closeAssignment = () => setNewAssignment(false);
 
@@ -54,8 +56,6 @@ function App() {
     <Router>
       <div className="App">
         <Nav user={user} />
-        <h1 className="text-center App__title">Asignment Tracker</h1>
-        <h3 className="text-center">Assignments</h3>
         <Switch>
           <Route path="/login">
             <Login setUser={setUser} />

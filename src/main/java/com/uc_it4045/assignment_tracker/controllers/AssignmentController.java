@@ -33,6 +33,7 @@ public class AssignmentController {
 
     @GetMapping("/api/assignments")
     public ResponseEntity<List<Assignment>> fetchAllAssignments(@RequestHeader(value = "Authorization") String token) throws Exception {
+        logger.info("Route: GET:/api/assignments hit");
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         String username = getAuthUsername(token);
@@ -77,6 +78,7 @@ public class AssignmentController {
 
     @GetMapping("/api/assignments/{id}")
     public ResponseEntity<Assignment> fetchAssignmentById(@PathVariable("id") int id) {
+        logger.info("Route: GET:/api/assignments{id} hit");
         Assignment assignment = assignmentService.fetchById(id);
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -86,6 +88,7 @@ public class AssignmentController {
 
     @PostMapping(value="/api/assignments", consumes="application/json", produces="application/json")
     public ResponseEntity<?> createAssignment(@RequestBody Assignment assignment, @RequestHeader(value = "Authorization") String token) throws Exception {
+        logger.info("Route: POST:/api/assignments hit");
         Assignment newAssignment = null;
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -102,6 +105,7 @@ public class AssignmentController {
 
     @PutMapping(value="/api/assignments", consumes="application/json", produces="application/json")
     public ResponseEntity updateAssignment(@RequestBody Assignment assignment, @RequestHeader(value = "Authorization") String token) {
+        logger.info("Route: PUT:/api/assignments hit");
         Assignment foundAssignment = assignmentService.fetchById(assignment.getId());
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -118,6 +122,7 @@ public class AssignmentController {
 
     @DeleteMapping("/api/assignments/{id}")
     public ResponseEntity deleteAssignment(@PathVariable("id") int id, @RequestHeader(value = "Authorization") String token) {
+        logger.info("Route: DELETE:/api/assignments/{id} hit");
         String username = getAuthUsername(token);
         try {
             assignmentService.delete(id, username);

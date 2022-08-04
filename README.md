@@ -96,3 +96,6 @@ _Still sorting out roles_
 
 4pm every Sunday(TBD)
 [Team Link](TBD) (Unable to create a Team/Group in Teams currently)
+
+
+When editing the project, if making changes to `/ui (React app)` run `mvn clean install` for changes to be compiled.

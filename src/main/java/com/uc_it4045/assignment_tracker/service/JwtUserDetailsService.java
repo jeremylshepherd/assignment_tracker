@@ -43,4 +43,8 @@ public class JwtUserDetailsService implements UserDetailsService {
     public AuthUser getUser(UserDTO user) {
         return userRepository.findByUsername(user.getUsername());
     }
+
+    public AuthUser getUser(String username) {
+        return userRepository.findByUsername(username);
+    }
 }
