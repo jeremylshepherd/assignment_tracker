@@ -2,7 +2,10 @@
 
 ## Introduction
 
-Our team has decided to create a assignemt/task management application. Users can track pending, in progress, completed, and archived tasks. The tasks will be represented by a Post-it style note that will be ordered in columns representing the assignment's status.
+Our team has decided to create an assignment/task management application. Users can track pending, in progress, completed, and archived tasks. The tasks will be represented by a Post-it style note that will be ordered in columns representing the assignment's status.
+
+### Final Product
+![app_screenshot](./src/main/ui/public/app_screenshot.png)
 
 ## Story Board
 

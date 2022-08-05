@@ -23,6 +23,13 @@ $GH-font: "Gloria Hallelujah", cursive;
   background-image: url(../../../public/black-paper.png);
   background-blend-mode: color-dodge;
 
+  &-page {
+    &__header {
+      font-family: $GH-font;
+      margin-bottom: 4em;
+    }
+  }
+
   &-header {
     width: 100%;
     display: flex;
@@ -126,7 +133,12 @@ $GH-font: "Gloria Hallelujah", cursive;
     justify-content: space-around;
     padding-inline: 0.25em;
 
-    &-column {
+    &__header {
+      font-family: $GH-font;
+      margin-bottom: 1em;
+    }
+
+    &__column {
       display: flex;
       flex-direction: column;
       align-items: center;

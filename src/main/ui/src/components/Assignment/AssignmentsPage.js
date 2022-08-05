@@ -13,8 +13,9 @@ function AssignmentsPage({
 }) {
   return (
     <>
-      <h1 className="text-center App__title">Assignment Tracker</h1>
-      <h3 className="text-center">Assignments</h3>
+      <div className="assignment-page__header">
+        <h3 className="text-center">Assignments</h3>
+      </div>
       <AssignmentList
         assignments={assignmentList}
         updateAssignment={updateAssignment}

@@ -11,7 +11,7 @@ function AssignmentForm(props) {
   const [dateTime, setDateTime] = useState("");
 
   useEffect(() => {
-    if (assignmentToUpdate !== null) {
+    if (Boolean(assignmentToUpdate)) {
       setTitle(assignmentToUpdate?.title);
       setDescription(assignmentToUpdate?.description);
       setStatus(assignmentToUpdate?.status);
@@ -64,17 +64,7 @@ function AssignmentForm(props) {
   };
 
   const handleStatusUpdate = (e) => {
-    let value = e.target.value;
-    let stat;
-    if (value === "INPROGRESS") {
-      stat = Status.INPROGRESS;
-    } else if (value === "COMPLETE") {
-      stat = Status.COMPLETE;
-    } else {
-      stat = Status.PENDING;
-    }
-    setStatus(stat);
-    console.log(status);
+    setStatus(e.target.value);
   };
 
   return (

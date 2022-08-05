@@ -17,7 +17,7 @@ function Nav() {
             src="https://instructure-uploads.s3.amazonaws.com/account_30000000001939/attachments/67480601/Cincy_Nav%20Logo.png"
             alt="UC logo"
           />
-          <i className="far fa-life-ring"></i>
+          Assignment Tracker
         </Link>
         {auth.user && <span>{`Hello, ${auth.user.firstName}`}</span>}
         <button

@@ -4,6 +4,8 @@ $TrainOne: "Train One", cursive;
 $VastShadow: "Vast Shadow", cursive;
 
 .navbar {
+  margin-bottom: 2em;
+
   &-brand {
     font-family: $VastShadow;
     font-size: 1.75em;
@@ -14,7 +16,7 @@ $VastShadow: "Vast Shadow", cursive;
   }
 
   &-logo {
-    width: 40px;
+    width: 32px;
   }
 
   .signout-link {
