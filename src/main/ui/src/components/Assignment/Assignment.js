@@ -20,7 +20,7 @@ function Assignment(props) {
     inprogress: "spinner",
     complete: "check-circle",
   };
-  const getIcon = (obj, status) => obj[status];
+  const getIcon = (obj, status) => obj[status.toLowerCase()];
   const dateString = new Date(date).toLocaleDateString("en-us", {
     month: "long",
     year: "numeric",
@@ -104,9 +104,7 @@ function Assignment(props) {
           >
             {status}
           </span>
-          <i
-            className={`fas fa-${getIcon(statusIcon, status.toLowerCase())}`}
-          />
+          <i className={`fas fa-${getIcon(statusIcon, status)}`} />
         </div>
       </div>
       {Boolean(id) && showUpdate && renderUpdateForm()}

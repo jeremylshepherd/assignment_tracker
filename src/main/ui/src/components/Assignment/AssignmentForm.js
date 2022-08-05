@@ -1,17 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Status } from "../../utils/constants";
+import { truncateDate } from "../../utils/dateUtils";
 
 function AssignmentForm(props) {
   const { closeForm, updateAssignment, createAssignment, assignmentToUpdate } =
     props;
-  const [title, setTitle] = useState(assignmentToUpdate?.title ?? "");
-  const [description, setDescription] = useState(
-    assignmentToUpdate?.description ?? ""
-  );
-  const [status, setStatus] = useState(
-    assignmentToUpdate?.status ?? Status.PENDING
-  );
-  const [dateTime, setDateTime] = useState(assignmentToUpdate?.date ?? "");
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [status, setStatus] = useState(Status.PENDING);
+  const [dateTime, setDateTime] = useState("");
+
+  useEffect(() => {
+    if (assignmentToUpdate !== null) {
+      setTitle(assignmentToUpdate?.title);
+      setDescription(assignmentToUpdate?.description);
+      setStatus(assignmentToUpdate?.status);
+      setDateTime(truncateDate(assignmentToUpdate?.date));
+    }
+  }, [assignmentToUpdate]);
 
   const formHeadingText = () => {
     return assignmentToUpdate ? "Update" : "Add New";
@@ -23,7 +29,7 @@ function AssignmentForm(props) {
         id: assignmentToUpdate.id,
         title,
         description,
-        status,
+        status: status,
         date: dateTime,
       };
       updateAssignment(updatedAssignment);
@@ -31,7 +37,7 @@ function AssignmentForm(props) {
       const newAssignment = {
         title: title,
         description,
-        status,
+        status: status,
         date: dateTime,
       };
       createAssignment(newAssignment);
@@ -68,6 +74,7 @@ function AssignmentForm(props) {
       stat = Status.PENDING;
     }
     setStatus(stat);
+    console.log(status);
   };
 
   return (
@@ -104,6 +111,7 @@ function AssignmentForm(props) {
         <select
           className="form-control mt-4"
           onChange={(e) => handleStatusUpdate(e)}
+          value={status}
         >
           {Object.keys(Status).map((key) => (
             <option key={key} value={key}>

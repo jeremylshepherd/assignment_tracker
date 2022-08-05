@@ -111,9 +111,14 @@ public class AssignmentController {
         headers.setContentType(MediaType.APPLICATION_JSON);
         String username = getAuthUsername(token);
         try {
-            Assignment updatedAssignment = assignmentService.save(foundAssignment, username);
-            logger.info("Route: PUT:/api/assignments returns " + updatedAssignment.toString());
-            return new ResponseEntity<Assignment>(updatedAssignment, headers, HttpStatus.OK);
+            if (foundAssignment.getId() == assignment.getId()) {
+                Assignment updatedAssignment = assignmentService.save(assignment, username);
+                logger.info("Route: PUT:/api/assignments returns " + updatedAssignment.toString());
+                return new ResponseEntity<Assignment>(updatedAssignment, headers, HttpStatus.OK);
+            } else {
+                logger.error("ERROR: Object mismatch");
+                throw new Exception("ERROR: Object mismatch");
+            }
         } catch (Exception e) {
             logger.error("Unable to update assignment: " + e.getMessage(), e);
             return new ResponseEntity(headers, HttpStatus.INTERNAL_SERVER_ERROR);
