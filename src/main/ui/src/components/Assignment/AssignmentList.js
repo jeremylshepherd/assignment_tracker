@@ -13,7 +13,9 @@ function AssignmentList(props) {
       inprogress: [],
       complete: [],
     };
-    assignmentList?.forEach((a) => obj[a.status.toLowerCase()].push(a));
+    if (assignmentList.length > 0) {
+      assignmentList?.forEach((a) => obj[a.status.toLowerCase()]?.push(a));
+    }
     setPendingList(obj.pending);
     setInProgressList(obj.inprogress);
     setCompleteList(obj.complete);
@@ -34,17 +36,26 @@ function AssignmentList(props) {
 
   return (
     <div className="assignment-list">
-      <div className="assignment-list-column">
-        <div className="assignment-list-column-content">
+      <div className="assignment-list__column">
+        <div className="assignment-list__header">
+          <h5>Pending</h5>
+        </div>
+        <div className="assignment-list__column-content">
           {renderStatusList(pendingList)}
         </div>
       </div>
-      <div className="assignment-list-column">
-        <div className="assignment-list-column-content">
+      <div className="assignment-list__column">
+        <div className="assignment-list__header">
+          <h5>In Progress</h5>
+        </div>
+        <div className="assignment-list__column-content">
           {renderStatusList(inProgressList)}
         </div>
       </div>
       <div className="assignment-list-column">
+        <div className="assignment-list__header">
+          <h5>Complete</h5>
+        </div>
         <div className="assignment-list-column-content">
           {renderStatusList(completeList)}
         </div>

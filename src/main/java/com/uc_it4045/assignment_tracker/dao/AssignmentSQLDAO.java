@@ -14,17 +14,17 @@ import java.util.List;
 public class AssignmentSQLDAO implements IAssignmentDAO {
 
     @Autowired
-    AssignmentRepository AssignmentRepository;
+    AssignmentRepository assignmentRepository;
 
     @Override
     public Assignment save(Assignment Assignment) throws Exception {
-        return AssignmentRepository.save(Assignment);
+        return assignmentRepository.save(Assignment);
     }
 
     @Override
     public List<Assignment> fetchAll() {
         List<Assignment> allAssignments = new ArrayList<>();
-        Iterable<Assignment> Assignments = AssignmentRepository.findAll();
+        Iterable<Assignment> Assignments = assignmentRepository.findAll();
         for (Assignment Assignment : Assignments) {
             allAssignments.add(Assignment);
         }
@@ -33,16 +33,16 @@ public class AssignmentSQLDAO implements IAssignmentDAO {
 
     @Override
     public Assignment fetch(int id) {
-        return  AssignmentRepository.findById(id).get();
+        return  assignmentRepository.findById(id).get();
     }
 
     @Override
     public void delete(int id) {
-        AssignmentRepository.deleteById(id);
+        assignmentRepository.deleteById(id);
     }
 
     @Override
-    public List<Assignment> fetchAssignment() throws IOException {
-        return null;
+    public List<Assignment> fetchUserAssignments(int userId) throws IOException {
+        return assignmentRepository.findByUserId(userId);
     }
 }

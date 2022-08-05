@@ -10,3 +10,11 @@ export function convertISO(datestring) {
   let minutes = leadingZero(date.getMinutes().toString());
   return `${month}/${day}/${date.getFullYear()} ${hours}:${minutes}`;
 }
+
+export function truncateDate(datestring) {
+  if (!datestring) {
+    return null;
+  }
+  const [date, discard] = datestring.split(".");
+  return date;
+}

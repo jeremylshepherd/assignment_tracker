@@ -9,4 +9,5 @@ import java.util.List;
 
 
 public interface AssignmentRepository extends CrudRepository<Assignment, Integer> {
+    List<Assignment> findByUserId(int userId);
 }

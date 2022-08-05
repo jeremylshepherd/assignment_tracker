@@ -1,8 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import useAuth from "../../auth/useAuth";
 import "../nav/_component.nav.scss";
 
 function Nav() {
+  const auth = useAuth();
+  const history = useHistory();
+  const signOut = () => auth.signout(() => history.push("/"));
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid">
@@ -12,8 +17,9 @@ function Nav() {
             src="https://instructure-uploads.s3.amazonaws.com/account_30000000001939/attachments/67480601/Cincy_Nav%20Logo.png"
             alt="UC logo"
           />
-          <i className="far fa-life-ring"></i>
+          Assignment Tracker
         </Link>
+        {auth.user && <span>{`Hello, ${auth.user.firstName}`}</span>}
         <button
           className="navbar-toggler collapsed"
           type="button"
@@ -26,21 +32,12 @@ function Nav() {
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        <div className="navbar-collapse collapse" id="navbarColor01">
-          <ul className="navbar-nav me-auto">
-            <li className="nav-item">
-              <Link className="nav-link active" to="/">
-                Home
-              </Link>
-            </li>
-            {/* <li className="nav-item">
-              <Link className="nav-link" to="/auth">
-                Logout
-              </Link>{" "}
-              // TODO: Implement with Auth Implmentation
-            </li> */}
-          </ul>
-        </div>
+        <div className="navbar-collapse collapse" id="navbarColor01"></div>
+        {auth.user && (
+          <a className="nav-link signout-link" onClick={signOut}>
+            Logout
+          </a>
+        )}
       </div>
     </nav>
   );

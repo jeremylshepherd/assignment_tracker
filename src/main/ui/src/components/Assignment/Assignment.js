@@ -20,7 +20,7 @@ function Assignment(props) {
     inprogress: "spinner",
     complete: "check-circle",
   };
-  const getIcon = (obj, status) => obj[status];
+  const getIcon = (obj, status) => obj[status.toLowerCase()];
   const dateString = new Date(date).toLocaleDateString("en-us", {
     month: "long",
     year: "numeric",
@@ -88,9 +88,9 @@ function Assignment(props) {
   return (
     <div className={`assignment assignment-${status.toLowerCase()}`}>
       <div className="assignment-header">
-        {id && renderDeleteButton()}
+        {Boolean(id) && renderDeleteButton()}
         <h3 className="assignment-heading">{title}</h3>
-        {id && renderUpdateButton()}
+        {Boolean(id) && renderUpdateButton()}
       </div>
       {description && (
         <div className="assignment-body">{renderDescription()}</div>
@@ -104,13 +104,11 @@ function Assignment(props) {
           >
             {status}
           </span>
-          <i
-            className={`fas fa-${getIcon(statusIcon, status.toLowerCase())}`}
-          />
+          <i className={`fas fa-${getIcon(statusIcon, status)}`} />
         </div>
       </div>
-      {id && showUpdate && renderUpdateForm()}
-      {id && showDelete && renderDeleteDialog()}
+      {Boolean(id) && showUpdate && renderUpdateForm()}
+      {Boolean(id) && showDelete && renderDeleteDialog()}
     </div>
   );
 }

@@ -1,0 +1,13 @@
+.login {
+    &-page {
+        height: 50vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &-form-container {
+        max-width: 800px;
+        padding: 2em 1em;        
+    }
+}
