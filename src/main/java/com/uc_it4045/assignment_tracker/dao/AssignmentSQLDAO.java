@@ -17,8 +17,8 @@ public class AssignmentSQLDAO implements IAssignmentDAO {
     AssignmentRepository assignmentRepository;
 
     @Override
-    public Assignment save(Assignment Assignment) throws Exception {
-        return assignmentRepository.save(Assignment);
+    public Assignment save(Assignment assignment) throws Exception {
+        return assignmentRepository.save(assignment);
     }
 
     @Override
