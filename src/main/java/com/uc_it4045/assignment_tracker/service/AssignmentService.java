@@ -4,7 +4,6 @@ import com.uc_it4045.assignment_tracker.dao.IAssignmentDAO;
 import com.uc_it4045.assignment_tracker.dao.UserRepository;
 import com.uc_it4045.assignment_tracker.dto.Assignment;
 import com.uc_it4045.assignment_tracker.dto.AuthUser;
-import com.uc_it4045.assignment_tracker.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;

@@ -4,6 +4,10 @@
 
 Our team has decided to create an assignment/task management application. Users can track pending, in progress, completed, and archived tasks. The tasks will be represented by a Post-it style note that will be ordered in columns representing the assignment's status.
 
+
+## Notes for running application
+<span style="color:red;font-weight:700;font-size:24px">IMPORTANT!!</span><br>
+There is an example `application.properties` file named `application-example.properties` in `src/main/resources` to document the required entries.
 ### Final Product
 ![app_screenshot](./src/main/ui/public/app_screenshot.png)
 

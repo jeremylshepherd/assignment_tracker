@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.List;
 
 public interface IAssignmentDAO {
-    Assignment save(Assignment Assignment) throws Exception;
+    Assignment save(Assignment assignment) throws Exception;
 
     List<Assignment> fetchAll();
 
