@@ -6,7 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
+@Repository
 @Profile("!test")
 public interface AssignmentRepository extends CrudRepository<Assignment, Integer> {
     List<Assignment> findByUserId(int userId);
