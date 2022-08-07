@@ -1,7 +1,6 @@
 version: 2 # use CircleCI 2.0
 jobs: # a collection of steps
   build: # runs not using Workflows must have a `build` job as entry point
-
     working_directory: ~/circleci-demo-java-spring # directory where steps will run
 
     docker: # run the steps with Docker
@@ -9,10 +8,9 @@ jobs: # a collection of steps
       - image: cimg/mysql:8.0
         environment:
           MYSQL_ALLOW_EMPTY_PASSWORD: yes
-          MYSQL_ROOT_PASSWORD: ''
+          MYSQL_ROOT_PASSWORD: ""
 
     steps: # a collection of executable commands
-
       - checkout # check out source code to working directory
 
       - restore_cache: # restore the saved cache after the first run or if `pom.xml` has changed
@@ -29,10 +27,6 @@ jobs: # a collection of steps
       - run:
           name: Wait for database service on the tcp protocol
           command: dockerize -wait tcp://localhost:3306 -timeout 1m
-
-      - run: sudo apt-get install mysql
-    
-      - run: mysql -h 127.0.0.1 -u root -e "create database at_test"
 
       - run: mvn package # run the actual tests
 
