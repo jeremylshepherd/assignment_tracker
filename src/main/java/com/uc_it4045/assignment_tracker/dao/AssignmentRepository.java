@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-
+@Profile("!test")
 public interface AssignmentRepository extends CrudRepository<Assignment, Integer> {
     List<Assignment> findByUserId(int userId);
 }
