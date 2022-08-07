@@ -7,9 +7,9 @@ jobs: # a collection of steps
     docker: # run the steps with Docker
       - image: circleci/openjdk:11-stretch # ...with this image as the primary container; this is where all `steps` will run
       - image: cimg/mysql:8.0
-        auth:
-          username: at_tester
-          password: at_tester
+        environment:
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+          MYSQL_ROOT_PASSWORD: ''
 
     steps: # a collection of executable commands
 
@@ -25,6 +25,14 @@ jobs: # a collection of steps
           paths:
             - ~/.m2
           key: circleci-demo-java-spring-{{ checksum "pom.xml" }}
+
+      - run:
+          name: Wait for database service on the tcp protocol
+          command: dockerize -wait tcp://localhost:3306 -timeout 1m
+
+      - run: sudo apt-get install mysql-client
+        -
+      - run: mysql -h 127.0.0.1 -u root -e "create database at_test"
 
       - run: mvn package # run the actual tests
 
