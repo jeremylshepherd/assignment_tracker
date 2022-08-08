@@ -4,6 +4,7 @@
 
 Our team has decided to create an assignment/task management application. Users can track pending, in progress, completed, and archived tasks. The tasks will be represented by a Post-it style note that will be ordered in columns representing the assignment's status.
 
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/jeremylshepherd/assignment_tracker/tree/final-polish.svg?style=shield)](https://dl.circleci.com/status-badge/redirect/gh/jeremylshepherd/assignment_tracker/tree/final-polish)  *See commit history on `final_polish` for the saga in fixing this*
 
 ## Notes for running application
 <span style="color:red;font-weight:700;font-size:24px">IMPORTANT!!</span><br>
