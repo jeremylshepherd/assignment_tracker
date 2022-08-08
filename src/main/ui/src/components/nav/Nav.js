@@ -34,6 +34,7 @@ function Nav() {
 
         <div className="navbar-collapse collapse" id="navbarColor01"></div>
         {auth.user && (
+          // eslint-disable-next-line jsx-a11y/anchor-is-valid
           <a className="nav-link signout-link" onClick={signOut}>
             Logout
           </a>

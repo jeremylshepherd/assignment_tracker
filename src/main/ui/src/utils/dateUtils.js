@@ -16,5 +16,6 @@ export function truncateDate(datestring) {
     return null;
   }
   const [date, discard] = datestring.split(".");
+  console.log(discard);
   return date;
 }

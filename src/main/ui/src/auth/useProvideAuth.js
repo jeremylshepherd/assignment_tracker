@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { fetchUser } from "./authentication.api";
 import { authService } from "./auth.service";
 
